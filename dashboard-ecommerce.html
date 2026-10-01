@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard E-commerce - Aperçu Général</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+    <header class="header">
+        <h1>Boutique Nova - Table de Bord</h1>
+        <p class="subtitle">Performance commerciale du mois en cours</p>
+    </header>
+
+    <main class="dashboard-container">
+      
+        <section class="kpi-grid">
+            <article class="kpi-card">
+                <h3>Chiffre d'Affaires</h3>
+                <p class="kpi-value">2 450 000 FCFA</p>
+                <span class="kpi-trend positive">+14.2% vs mois dernier</span>
+            </article>
+
+            <article class="kpi-card">
+                <h3>Total Commandes</h3>
+                <p class="kpi-value">184</p>
+                <span class="kpi-trend positive">+8.5% vs mois dernier</span>
+            </article>
+
+            <article class="kpi-card">
+                <h3>Taux de Conversion</h3>
+                <p class="kpi-value">2.8%</p>
+                <span class="kpi-trend negative">-0.3% vs mois dernier</span>
+            </article>
+
+            <article class="kpi-card">
+                <h3>Panier Moyen</h3>
+                <p class="kpi-value">13 315 FCFA</p>
+                <span class="kpi-trend positive">+5.1% vs mois dernier</span>
+            </article>
+        </section>
+
+       
+        <section class="table-section">
+            <h2>Dernières Commandes</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Commande</th>
+                            <th>Client</th>
+                            <th>Produit</th>
+                            <th>Montant</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#CMD-1092</td>
+                            <td>Koffi Mensah</td>
+                            <td>Écouteurs Sans Fil Pro</td>
+                            <td>25 000 FCFA</td>
+                            <td><span class="badge status-success">Libré</span></td>
+                        </tr>
+                        <tr>
+                            <td>#CMD-1091</td>
+                            <td>Awa Diop</td>
+                            <td>Montre Connectée Sport</td>
+                            <td>42 000 FCFA</td>
+                            <td><span class="badge status-pending">En cours</span></td>
+                        </tr>
+                        <tr>
+                            <td>#CMD-1090</td>
+                            <td>Sessou Armel</td>
+                            <td>Support Téléphone Auto</td>
+                            <td>8 500 FCFA</td>
+                            <td><span class="badge status-success">Livré</span></td>
+                        </tr>
+                        <tr>
+                            <td>#CMD-1089</td>
+                            <td>Babatunde O.</td>
+                            <td>Sac à Dos Antivol</td>
+                            <td>18 000 FCFA</td>
+                            <td><span class="badge status-danger">Annulé</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

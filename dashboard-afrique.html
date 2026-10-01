@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Chart.js - Indicateurs Afrique de l'Ouest</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f1f5f9;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .controls {
+            margin-bottom: 20px;
+        }
+        select {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #cbd5e1;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Taux de Pénétration Internet & Mobile Money</h2>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">Source : Données simulées type Banque Mondiale</p>
+
+     
+        <div class="controls">
+            <label for="countrySelect"><strong>Choisir un pays :</strong> </label>
+            <select id="countrySelect">
+                <option value="benin">Bénin</option>
+                <option value="senegal">Sénégal</option>
+                <option value="ci">Côte d'Ivoire</option>
+            </select>
+        </div>
+
+      
+        <canvas id="indicatorsChart"></canvas>
+    </div>
+
+    <script>
+   
+        const datasetBanqueMondiale = {
+            benin: {
+                years: ['2021', '2022', '2023', '2024', '2025'],
+                internetPenetration: [28, 33, 40, 48, 55],
+                mobileMoneyUsers: [35, 42, 50, 61, 70]
+            },
+            senegal: {
+                years: ['2021', '2022', '2023', '2024', '2025'],
+                internetPenetration: [42, 46, 52, 58, 64],
+                mobileMoneyUsers: [50, 58, 65, 72, 79]
+            },
+            ci: {
+                years: ['2021', '2022', '2023', '2024', '2025'],
+                internetPenetration: [38, 45, 51, 60, 68],
+                mobileMoneyUsers: [48, 55, 63, 70, 78]
+            }
+        };
+
+        const ctx = document.getElementById('indicatorsChart').getContext('2d');
+        let myChart;
+
+   
+        function renderChart(countryKey) {
+            const countryData = datasetBanqueMondiale[countryKey];
+
+          
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: countryData.years,
+                    datasets: [
+                        {
+                            label: 'Pénétration Internet (%)',
+                            data: countryData.internetPenetration,
+                            borderColor: '#2563eb',
+                            backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Utilisateurs Mobile Money (%)',
+                            data: countryData.mobileMoneyUsers,
+                            borderColor: '#16a34a',
+                            backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+
+      
+        document.getElementById('countrySelect').addEventListener('change', (e) => {
+            renderChart(e.target.value);
+        });
+
+        
+        renderChart('benin');
+    </script>
+</body>
+</html>

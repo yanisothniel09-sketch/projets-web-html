@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographie : E-commerce en Afrique de l'Ouest</title>
+    <style>
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic-card {
+            max-width: 650px;
+            width: 100%;
+            background-color: #1e293b;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #38bdf8;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        p.intro {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #f43f5e;
+        }
+
+       
+        .chart-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .donut-chart {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: conic-gradient(#38bdf8 0% 68%, #334155 68% 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .donut-inner {
+            width: 90px;
+            height: 90px;
+            background-color: #1e293b;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .legend-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .color-box {
+            width: 14px;
+            height: 14px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+
+        .bar-group {
+            margin-bottom: 15px;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .bar-bg {
+            background-color: #334155;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background-color: #f43f5e;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <article class="infographic-card">
+        <h1>Bilan E-commerce UOA</h1>
+        <p class="intro">Analyse synthétique des tendances d'achat digital en Afrique de l'Ouest (2025-2026)</p>
+
+   
+        <h2 class="section-title">1. Modes de Paiement Préférés</h2>
+        <div class="chart-container">
+          
+            <div class="donut-chart">
+                <div class="donut-inner">68%</div>
+            </div>
+            
+            <ul class="legend-list">
+                <li class="legend-item">
+                    <span class="color-box" style="background-color: #38bdf8;"></span>
+                    Mobile Money (Wave, MTN, Moov) : 68%
+                </li>
+                <li class="legend-item">
+                    <span class="color-box" style="background-color: #334155;"></span>
+                    Paiement à la livraison & CB : 32%
+                </li>
+            </ul>
+        </div>
+
+   
+        <h2 class="section-title">2. Catégories de Produits Top Ventes</h2>
+        
+        <div class="bar-group">
+            <div class="bar-label">
+                <span>High-Tech & Électronique</span>
+                <span>45%</span>
+            </div>
+            <div class="bar-bg">
+                <div class="bar-fill" style="width: 45%;"></div>
+            </div>
+        </div>
+
+        <div class="bar-group">
+            <div class="bar-label">
+                <span>Mode & Accessoires</span>
+                <span>30%</span>
+            </div>
+            <div class="bar-bg">
+                <div class="bar-fill" style="width: 30%;"></div>
+            </div>
+        </div>
+
+        <div class="bar-group">
+            <div class="bar-label">
+                <span>Beauté & Soins Personnels</span>
+                <span>15%</span>
+            </div>
+            <div class="bar-bg">
+                <div class="bar-fill" style="width: 15%;"></div>
+            </div>
+        </div>
+    </article>
+
+</body>
+</html>

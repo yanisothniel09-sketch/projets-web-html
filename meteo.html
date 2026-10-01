@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Météo & Historique</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e0f2fe;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        .weather-app {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #bae6fd;
+            border-radius: 6px;
+        }
+        button {
+            padding: 10px 15px;
+            background: #0284c7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .history-tags {
+            margin-bottom: 20px;
+        }
+        .tag {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .weather-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="weather-app">
+        <h2>Météo & Tendances</h2>
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Entrez une ville (ex: Cotonou)...">
+            <button onclick="getWeather()">Chercher</button>
+        </div>
+
+        <div class="history-tags" id="historyTags"></div>
+
+        <div class="weather-info" id="weatherInfo">
+            <h3 id="cityName">---</h3>
+            <p id="tempDisplay" style="font-size: 2rem; font-weight: bold; color: #0284c7;">-- °C</p>
+        </div>
+
+        <canvas id="tempChart"></canvas>
+    </div>
+
+    <script>
+        let myChart;
+
+        async function getWeather(selectedCity = null) {
+            const city = selectedCity || document.getElementById('cityInput').value.trim();
+            if (!city) return;
+
+            try {
+             
+                const mockData = {
+                    "Cotonou": { temp: 29, trend: [28, 29, 30, 29, 28] },
+                    "Dakar": { temp: 24, trend: [23, 24, 25, 24, 23] },
+                    "Paris": { temp: 18, trend: [16, 17, 18, 20, 19] }
+                };
+
+                const data = mockData[city] || { temp: 26, trend: [24, 25, 26, 27, 26] };
+
+                // Affichage dans le DOM
+                document.getElementById('cityName').innerText = city;
+                document.getElementById('tempDisplay').innerText = `${data.temp} °C`;
+
+               
+                saveToHistory(city);
+                displayHistory();
+
+             
+                renderTrendChart(data.trend);
+
+            } catch (error) {
+                console.error("Erreur lors de la récupération météo :", error);
+            }
+        }
+
+        function saveToHistory(city) {
+            let history = JSON.parse(localStorage.getItem('weatherHistory')) || [];
+            if (!history.includes(city)) {
+                history.push(city);
+                if (history.length > 4) history.shift(); // Conserver max 4 éléments
+                localStorage.setItem('weatherHistory', JSON.stringify(history));
+            }
+        }
+
+        function displayHistory() {
+            const history = JSON.parse(localStorage.getItem('weatherHistory')) || [];
+            const container = document.getElementById('historyTags');
+            container.innerHTML = history.map(city => 
+                `<span class="tag" onclick="getWeather('${city}')">${city}</span>`
+            ).join('');
+        }
+
+        function renderTrendChart(trendData) {
+            const ctx = document.getElementById('tempChart').getContext('2d');
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['J1', 'J2', 'J3', 'J4', 'J5'],
+                    datasets: [{
+                        label: 'Prévision (°C)',
+                        data: trendData,
+                        borderColor: '#0284c7',
+                        backgroundColor: 'rgba(2, 132, 199, 0.1)',
+                        fill: true
+                    }]
+                }
+            });
+        }
+
+       
+        displayHistory();
+    </script>
+</body>
+</html>
